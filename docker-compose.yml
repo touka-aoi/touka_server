@@ -1,20 +1,41 @@
 version: "3.8"
 
 services: 
-  # app: 
-  #     build: ./.docker-config/phoenix
+  
+  # web: 
+  #   build: ./.docker-config/.nginx
+  #   ports: 
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./.docker-config/.nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  nodejs: 
+      build: ./.docker-config/.nodejs
+      volumes:
+        - ./discord:/usr/src/app
+      command: bash -c "npx ts-node ./src/app.ts"
+      expose:
+        - "3000"
+      tty: true
+
+  ngrok: 
+    image: ngrok/ngrok:latest
+    ports:
+      - "4040:4040"
+    volumes:
+      - ./ngrok:/etc/ngrkok
+    environment:
+      NGROK_CONFIG: /etc/ngrkok/ngrok.yml
+    depends_on:
+      - nodejs
+  
+  # back: 
+  #     build: ./.docker-config/.python
   #     # command: mix phx.server
-  #     volumes:
-  #       - .:/workspace
+  #     # volumes:
+  #     #   - .:/workspace
   #     expose:
   #       - "4000"
   #     tty: true
-  
-  web: 
-    build: ./.docker-config/nginx
-    ports: 
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./.docker-config/nginx/nginx.conf:/etc/nginx/nginx.conf
 
