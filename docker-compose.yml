@@ -20,6 +20,7 @@ services:
       NGROK_CONFIG: /etc/ngrkok/ngrok.yml
     depends_on:
       - nodejs
+    restart: always
 
   nodejs: 
       build: ./.docker-config/.nodejs
@@ -29,6 +30,7 @@ services:
       expose:
         - "3000"
       tty: true
+      restart: always 
       depends_on:
         - python
 
@@ -41,6 +43,7 @@ services:
     ports:
       - "8000:8000"
     tty: true
+    restart: always
 
   
   # back: 
