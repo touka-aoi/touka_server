@@ -1,0 +1,20 @@
+version: "3.8"
+
+services: 
+  # app: 
+  #     build: ./.docker-config/phoenix
+  #     # command: mix phx.server
+  #     volumes:
+  #       - .:/workspace
+  #     expose:
+  #       - "4000"
+  #     tty: true
+  
+  web: 
+    build: ./.docker-config/nginx
+    ports: 
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./.docker-config/nginx/nginx.conf:/etc/nginx/nginx.conf
+
