@@ -1,0 +1,6 @@
+aiohttp==3.8.3
+fastapi==0.86.0
+hydra-core==1.2.0
+omegaconf==2.2.3
+uvicorn==0.18.3
+argon2-cffi==21.3.0

@@ -10,15 +10,6 @@ services:
   #   volumes:
   #     - ./.docker-config/.nginx/nginx.conf:/etc/nginx/nginx.conf
 
-  nodejs: 
-      build: ./.docker-config/.nodejs
-      volumes:
-        - ./discord:/usr/src/app
-      command: bash -c "npx ts-node ./src/app.ts"
-      expose:
-        - "3000"
-      tty: true
-
   ngrok: 
     image: ngrok/ngrok:latest
     ports:
@@ -29,6 +20,28 @@ services:
       NGROK_CONFIG: /etc/ngrkok/ngrok.yml
     depends_on:
       - nodejs
+
+  nodejs: 
+      build: ./.docker-config/.nodejs
+      volumes:
+        - ./discord:/usr/src/app
+      command: bash -c "npx ts-node ./src/app.ts"
+      expose:
+        - "3000"
+      tty: true
+      depends_on:
+        - python
+
+
+  python: 
+    build: ./.docker-config/.python
+    volumes:
+      - ./python:/usr/src/app
+    command: bash -c "uvicorn main:app --host 0.0.0.0 --reload"
+    ports:
+      - "8000:8000"
+    tty: true
+
   
   # back: 
   #     build: ./.docker-config/.python

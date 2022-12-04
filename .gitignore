@@ -1,4 +1,16 @@
+# docker
 /.docker-config/.nginx/cert/
+
+# nodeJs
 /discord/.env
 /discord/node_modules
+
+# ngrok
 /ngrok/ngrok.yml
+
+# python
+/python/CF/__pycache__
+/python/Nai/__pycache__
+/python/conf/
+
+
