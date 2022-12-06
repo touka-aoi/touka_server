@@ -2,8 +2,7 @@
 
 ngrokによってホストされているDiscordBotです。NOVELAIのAPIを叩いて画像生成を行います。
 
-![setting](./gif/setting.gif) 
-![generate](./gif/generate.gif)
+![setting](./gif/setting.gif) ![generate](./gif/generate.gif)
 
 **環境**
 
